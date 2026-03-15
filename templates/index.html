@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kisan Saathi - किसान साथी</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🌾</div>
+      <div>
+        <h2 class="sidebar-title">Kisan Saathi</h2>
+        <p class="sidebar-sub">किसान का डिजिटल साथी</p>
+      </div>
+    </div>
+    <div class="server-status" id="server-status">
+      <span class="status-dot" id="server-dot"></span>
+      <span id="server-status-text">Connecting...</span>
+    </div>
+    <div class="sidebar-section">
+      <p class="sidebar-label">Language / भाषा</p>
+      <div class="lang-group">
+        <button class="lang-card active" id="sidebar-btn-hi" onclick="setLanguage('hi')">
+          <span class="lang-flag">🇮🇳</span>
+          <span class="lang-name">हिंदी</span>
+          <span class="lang-sub">Hindi</span>
+        </button>
+        <button class="lang-card" id="sidebar-btn-en" onclick="setLanguage('en')">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-name">English</span>
+          <span class="lang-sub">अंग्रेजी</span>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <p class="sidebar-label">Session Info</p>
+      <div class="stat-row">
+        <span class="stat-label" id="stat-label-msgs">Messages</span>
+        <span class="stat-value" id="msg-count">0</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label" id="stat-label-model">Model</span>
+        <span class="stat-value model-badge" id="model-badge">llama-3.3-70b-versatile</span>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <p class="sidebar-label" id="links-label">Useful Links</p>
+      <div class="link-list">
+        <a href="https://pmkisan.gov.in" target="_blank" class="sidebar-link">🏛️ PM-Kisan Portal</a>
+        <a href="https://www.enam.gov.in" target="_blank" class="sidebar-link">💰 eNAM Market</a>
+        <a href="https://soilhealth.dac.gov.in" target="_blank" class="sidebar-link">🌿 Soil Health Card</a>
+        <a href="https://pmfby.gov.in" target="_blank" class="sidebar-link">🛡️ Fasal Bima Yojana</a>
+        <a href="https://mkisan.gov.in" target="_blank" class="sidebar-link">📱 mKisan Portal</a>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="clear-btn" onclick="clearConversation()" id="clear-btn">
+        🗑️ <span id="clear-btn-text">Clear Chat</span>
+      </button>
+    </div>
+  </aside>
+  <main class="chat-area">
+    <header class="topbar">
+      <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+        <span class="menu-icon">☰</span>
+      </button>
+      <div class="topbar-identity">
+        <div class="topbar-avatar">🌾</div>
+        <div>
+          <h1 class="topbar-name">Kisan Saathi</h1>
+          <p class="topbar-status" id="topbar-status">Online • Ready to help</p>
+        </div>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn active" id="btn-hi" onclick="setLanguage('hi')">हिंदी</button>
+        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+      </div>
+    </header>
+    <div class="topics-wrapper">
+      <div class="topics-bar" id="topics-bar"></div>
+    </div>
+    <section class="messages" id="messages" aria-live="polite"></section>
+    <footer class="input-bar">
+      <div class="input-row">
+        <textarea
+          id="user-input"
+          class="chat-input"
+          placeholder="अपना सवाल लिखें..."
+          rows="1"
+          onkeydown="handleKeyDown(event)"
+          oninput="autoResize(this)"
+          aria-label="Type your message"
+        ></textarea>
+        <button class="send-btn" id="send-btn" onclick="sendMessage()" title="Send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"
+              stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="input-hint" id="input-hint">Powered by Groq Cloud • Press Enter to send</p>
+    </footer>
+  </main>
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
