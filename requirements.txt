@@ -1,31 +1,5 @@
-# ================================================================
-# KISAN SAATHI — Python Dependencies
-# File: requirements.txt
-#
-# HOW TO INSTALL:
-#   Open terminal in VS Code → type:
-#   pip install -r requirements.txt
-#
-# WHAT EACH PACKAGE DOES:
-# ================================================================
-
-# Flask — the web framework that runs our server
-# It handles routing, HTTP requests/responses, and serving HTML files
 flask==3.0.3
-
-# flask-cors — allows the browser to talk to our Flask server
-# Without this, browsers block cross-origin requests for security
 flask-cors==4.0.1
-
-# groq — official Groq Cloud SDK
-# Provides methods to call Groq-hosted models with streaming support
 groq==0.18.0
-
-# python-dotenv — reads .env file and loads variables into os.environ
-# Lets us keep secrets (like API key) out of source code
 python-dotenv==1.0.1
-
-# gunicorn — production-grade WSGI server (optional, for deployment)
-# Use this instead of Flask's built-in server when deploying to the web
-# Run with: gunicorn app:app
 gunicorn==22.0.0
